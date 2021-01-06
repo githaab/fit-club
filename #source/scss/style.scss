@@ -1,0 +1,294 @@
+@import url('https://fonts.googleapis.com/css2?family=Dancing+Script&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Pacifico&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=PT+Sans+Caption:wght@700&display=swap');
+// Файл обнуляющих стилей
+@import "nullstyle.scss";
+
+body {
+	background:
+	radial-gradient(#000 15%, transparent 16%) 0 0,
+	radial-gradient(#000 15%, transparent 16%) 8px 8px,
+	radial-gradient(rgba(255,255,255,.1) 15%, transparent 20%) 0 1px,
+	radial-gradient(rgba(255,255,255,.1) 15%, transparent 20%) 8px 9px;
+	background-color: #000;
+	background-size:16px 16px;
+	color: #fff;
+}
+
+.wrapper {
+	min-height: 100%;
+	display: grid;
+	grid-template: minmax(100px, auto) 1fr minmax(70px, auto) / 1fr; /* 1 - шапка, 2 - main, 1fr - чтобы занимал все пространство и прибивал к низу футер */
+	grid-template-areas: 
+	"header"
+	"main"
+	"footer";	;
+}
+.header {
+	font-family: 'Pacifico', cursive;
+	grid-area: header;
+	background: #373B44;  /* fallback for old browsers */
+	background: -webkit-linear-gradient(to bottom, #4286f4, #373B44);  /* Chrome 10-25, Safari 5.1-6 */
+	background: linear-gradient(to bottom, #4286f4, #373B44); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+	padding: 15px;
+	display: grid;
+	grid-template: 1fr / 1fr minmax(auto, 300px) minmax(auto, 1100px) 1fr;
+	align-items: center;
+	justify-items: space-around;
+	&__logo {
+		grid-column: 2 / 3;	
+		img {
+		object-fit: cover;
+		border-radius: 50%;
+		/* background-color: #fff; */
+		}
+	}
+	&__menu {
+		grid-column: 3 / 4;
+	}
+	&__list {
+		display: grid;
+		grid-auto-flow: column;
+		justify-items: end;
+		li {
+			margin: 0 0 0 30px; /* чтобы пукнты меню не сближались сильно */
+		}
+	}
+	&__link {
+		color: #fff;
+		font-size: 18px;
+	}
+	&__burger {}
+}
+
+@media (max-width: 992px){
+	.header__list {
+		display: none;
+	}
+	.header__menu {
+		display: grid;
+		justify-items: end;
+	}
+	.header__burger {
+
+	}
+}
+
+.main {
+	padding: 30px 15px;
+}
+
+
+
+.sidebar {
+	font-family: 'Pacifico', cursive;
+	background: #1f4037;  /* fallback for old browsers */
+	background: -webkit-linear-gradient(to right, #99f2c8, #1f4037);  /* Chrome 10-25, Safari 5.1-6 */
+	background: linear-gradient(to right, #99f2c8, #1f4037); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+
+	padding: 30px 15px;
+	margin: 0 0 30px 0;
+	&__menu {}
+	&__list {
+		li {
+			margin: 0 0 30px 0;
+		}
+	}
+	&__link {
+		color: #fff;
+		font-size: 20px;
+	}
+}
+.content {
+	&__title {
+		font-size: 30px;
+		letter-spacing: 5px;
+		margin: 0 0 40px 0;
+		text-align: center;
+		font-family: 'Dancing Script', cursive;
+		text-shadow: 2px 2px 2px #fff;
+	}
+
+		&__title:before, &__title:after { 
+		content: "\2746"; 
+		display: inline-block; 
+		font-size: 60px; 
+		color: #38afaa; 
+		-webkit-animation: my 4s infinite alternate; 
+		animation: my 4s infinite alternate; 
+		}
+		&__title:before { 
+		margin-right: 0.5em; 
+		}
+		&__title:after { 
+		margin-left: 0.5em; 
+		}
+		@-webkit-keyframes my {
+		    0%   {color: #2e2f92;}
+		    25%  {color: #38afaa;}
+		    50%  {color: #5b59a7;}
+		    75%  {color: #f7b21c;}
+		    100% {color: #e12527;}
+		 }
+		@keyframes my {
+		    0%   {color: #2e2f92;}
+		    25%  {color: #38afaa;}
+		    50%  {color: #5b59a7;}
+		    75%  {color: #f7b21c;}
+		    100% {color: #e12527;}
+		 }
+
+	
+	&__gallery {
+		margin: 0 0 50px 0;
+		}
+	&__products {}
+}
+
+@media (min-width: 992px){
+	.main {
+		grid-area: main;
+		display: grid;
+		grid-template: 1fr / 1fr minmax(auto, 300px) minmax(auto, 1100px) 1fr;		
+	}
+	.sidebar {
+		grid-column: 2 / 3;
+		margin: 0;
+	}
+	.content {
+		grid-column: 3 / 4;
+		padding: 0 0 0 30px;
+	}
+}
+
+
+.gallery {
+	&__title {
+		font-size: 18px;
+		margin: 0 0 30px 0;
+		text-align: center;
+		font-family: 'PT Sans Caption', sans-serif;
+		letter-spacing: 4px;
+	}
+	&__items {
+		display: grid;
+		gap: 10px;
+		grid-template-columns: repeat(auto-fit, minmax(250px,1fr));
+	}
+	&__item {
+		position: relative;
+		padding: 0 0 85% 0;
+		img {
+			position: absolute;
+			top: 0;
+			left: 0;
+			width: 100%;
+			height: 100%;
+			object-fit: cover;
+		}
+		&_big {
+		}
+	}
+}
+
+@media (min-width: 767px){
+	.gallery__item_big {
+		grid-column: span 2; /* 2 - сколько ячеек объединит по вертикали или горизонтали */
+		grid-row: span 2;
+	}
+
+}
+.products {
+	&__title {
+		font-size: 18px;
+		margin: 0 0 30px 0;
+		text-align: center;
+		font-family: 'PT Sans Caption', sans-serif;
+		letter-spacing: 4px;
+	}
+	&__items {
+		display: grid;
+		grid-template-columns: repeat(auto-fit, minmax(250px,1fr));
+		column-gap: 30px;
+		row-gap: 50px;
+		/* grid-auto-rows: 1fr; все строки будут выстраиваться по ширине максимального элемента (там где больше текста) */
+	}
+	&__item {
+		display: grid;
+		grid-auto-flow: row;
+		grid-template: auto 1fr minmax(40px, auto) / 1fr;
+	}
+	&__image {
+		position: relative;
+		padding: 0 0 90% 0;
+		margin: 0 0 20px 0;
+		img {
+			position: absolute;
+			top: 0;
+			left: 0;
+			width: 100%;
+			height: 100%;
+			object-fit: cover;
+		}
+	}
+	&__name {
+		font-size: 20px;
+		color: #fff;
+		line-height: 30px;
+		margin: 0 0 20px 0;
+	}
+	&__button {
+		color: #fff;
+		text-transform: uppercase;
+		letter-spacing: 2px;
+		text-decoration: none;
+		background-color: purple;
+		padding: 0 20px;
+		line-height: 40px;
+		justify-self: start;
+		transition: all 0.5s ease 0s;
+
+	}
+	&__button:hover {
+		transform: scale(1.1);
+	}
+	&__button:active {
+		transform: translate(3px,3px);
+	}
+}
+.footer {
+	grid-area: footer;
+	background-color: #a4508b;
+	background-image: linear-gradient(326deg, #a4508b 0%, #5f0a87 74%);
+	display: grid;
+	grid-template: 1fr / 1fr minmax(auto, 300px) minmax(auto, 1100px) 1fr;
+	padding: 15px;
+	align-items: center;
+	&__copy {
+	}
+	&__text {
+	}
+}
+
+@media (min-width: 550px){
+	.footer__copy {
+		grid-column: 2 / 3;
+	}
+	.footer__text { 
+		grid-column: 3 / 4;
+		text-align: right;
+	}
+}
+
+@media (max-width: 550px){
+	.footer { 
+		grid-template: 1fr 1fr / 1fr;
+		text-align: center;
+	}
+	.footer__copy {
+		order: 2;
+	}
+	.footer__text { 
+		order: 1;
+	}
+}
